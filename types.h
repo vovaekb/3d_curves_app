@@ -6,7 +6,7 @@ class Point
 {
 public:
     Point() = default;
-    Point(int x, int y, int z) {}
+    Point(int x, int y, int z) : x_(x), y_(y), z_(z) {}
 private:
     int x_;
     int y_;
@@ -16,11 +16,12 @@ private:
 class Vector
 {
 public:
-    Vector(int x, int y, int z) {}
+    Vector() = default;
+    Vector(int x, int y, int z) : x_(x), y_(y), z_(z) {}
 private:
-    int x;
-    int y;
-    int z;
+    int x_;
+    int y_;
+    int z_;
 };
 
 #endif //CADEX_TASK_TYPES_H
