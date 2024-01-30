@@ -30,6 +30,7 @@ public:
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:
+    Point center;
     int radius_x;
     int radius_y;
 };
@@ -37,10 +38,11 @@ private:
 class Helix : public Shape
 {
 public:
-    Helix(int rad, int step);
+    Helix(Point p, int rad, int step);
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:
+    Point center;
     int radius;
     int step_;
 };
