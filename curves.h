@@ -7,6 +7,7 @@ class Shape
 {
 public:
     Shape();
+    virtual void print();
     virtual Point getPoint(float t);
     virtual Vector getDerivative(float t);
 private:
@@ -16,6 +17,7 @@ class Circle : public Shape
 {
 public:
     Circle(Point p, int rad);
+    void print();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:
@@ -27,6 +29,7 @@ class Ellipse : public Shape
 {
 public:
     Ellipse(Point p, int rad_x, int rad_y);
+    void print();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:
@@ -39,6 +42,7 @@ class Helix : public Shape
 {
 public:
     Helix(Point p, int rad, int step);
+    void print();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:

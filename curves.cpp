@@ -7,11 +7,18 @@
 using namespace std;
 
 Shape::Shape() {}
+void Shape::print() {}
 Point Shape::getPoint(float t) {}
 Vector Shape::getDerivative(float t) {}
 
 Circle::Circle(Point p, int rad) : center(p), radius(rad) {
     cout << "Circle::Circle" << endl;
+}
+void Circle::print()
+{
+    cout << "Circle" << endl;
+    cout << radius << ", " << endl;
+    center.print();
 }
 Point Circle::getPoint(float t) {
     int x = center.getX() + radius * cos(t);
@@ -29,6 +36,12 @@ Vector Circle::getDerivative(float t) {
 }
 
 Ellipse::Ellipse(Point p, int rad_x, int rad_y) : center(p), radius_x(rad_x), radius_y(rad_y) {}
+void Ellipse::print()
+{
+    cout << "Ellipse" << endl;
+    cout << radius_x << ", " << radius_y << ", " << endl;
+    center.print();
+}
 Point Ellipse::getPoint(float t) {
     int x = center.getX() + radius_x * cos(t);
     int y = center.getY() + radius_y * sin(t);
@@ -45,6 +58,12 @@ Vector Ellipse::getDerivative(float t) {
 }
 
 Helix::Helix(Point p, int rad, int step) : center(p), radius(rad), step_(step) {}
+void Helix::print()
+{
+    cout << "Helix" << endl;
+    cout << radius << ", " << step_ << endl;
+    center.print();
+}
 Point Helix::getPoint(float t) {
     int x = center.getX() + radius * cos(t);
     int y = center.getY() + radius * sin(t);
