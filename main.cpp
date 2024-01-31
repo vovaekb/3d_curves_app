@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -39,22 +40,50 @@ vector<std::shared_ptr<Shape> > createCurvesList() {
         result.emplace_back(c);
     }
     // Examine curves
-    for(const auto &c: result)
-    {
-        c->print();
-        cout << endl;
-    }
+//    for(const auto &c: result)
+//    {
+//        c->print();
+//        cout << endl;
+//    }
     return result;
 }
 
-void printCurvesCoords() {}
+void printCurvesCoords(const vector<std::shared_ptr<Shape> > &v) {
+    int t = PI / 4;
+    for(const auto &c: v)
+    {
+        Point res = c->getPoint(t);
+        res.print();
+        Vector der = c->getDerivative(t);
+        der.print();
+        cout << endl;
+    }
+}
 
 void printCurvesDerivatives() {}
 
 int getCurvesRadiiSum() {}
 
+vector<std::shared_ptr<Shape> > createSecondList(vector<std::shared_ptr<Shape> > &v) {
+    cout << "createSecondList" << endl;
+    vector<std::shared_ptr<Shape> > second_list;
+    std::copy_if(v.begin(),
+                 v.end(),
+                 std::back_inserter(second_list),
+                 [](auto &c) { return (dynamic_cast<Circle*>(c.get()) != nullptr); });
+    cout << second_list.size() << endl;
+    for(const auto &c: second_list)
+    {
+        c->print();
+        cout << endl;
+    }
+    return second_list;
+}
+
 int main() {
     auto curves_list = createCurvesList();
+//    printCurvesCoords(curves_list);
+    auto circles_list = createSecondList(curves_list);
 
     return 0;
 }
