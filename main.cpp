@@ -49,7 +49,7 @@ vector<std::shared_ptr<Shape> > createCurvesList() {
 }
 
 void printCurvesCoords(const vector<std::shared_ptr<Shape> > &v) {
-    int t = PI / 4;
+    auto t = PI / 4;
     for(const auto &c: v)
     {
         Point res = c->getPoint(t);
@@ -101,7 +101,7 @@ void sortSecondList(vector<std::shared_ptr<Shape> > &v) {
     }
 }
 
-int getCurvesRadiiSum(vector<std::shared_ptr<Shape> > &v) {
+float getCurvesRadiiSum(vector<std::shared_ptr<Shape> > &v) {
     auto result = 0;
     for(const auto &c: v)
     {

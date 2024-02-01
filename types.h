@@ -9,27 +9,27 @@ class Point
 {
 public:
     Point() = default;
-    Point(int x, int y, int z) : x_(x), y_(y), z_(z) {}
+    Point(float x, float y, float z) : x_(x), y_(y), z_(z) {}
     void print() { cout << x_ << ", " << y_ << ", " << z_ << endl; }
-    int getX() const { return x_; }
-    int getY() const { return y_; }
-    int getZ() const { return z_; }
+    float getX() const { return x_; }
+    float getY() const { return y_; }
+    float getZ() const { return z_; }
 private:
-    int x_;
-    int y_;
-    int z_;
+    float x_;
+    float y_;
+    float z_;
 };
 
 class Vector
 {
 public:
     Vector() = default;
-    Vector(int x, int y, int z) : x_(x), y_(y), z_(z) {}
+    Vector(float x, float y, float z) : x_(x), y_(y), z_(z) {}
     void print() { cout << x_ << ", " << y_ << ", " << z_ << endl; }
 private:
-    int x_;
-    int y_;
-    int z_;
+    float x_;
+    float y_;
+    float z_;
 };
 
 #endif //CADEX_TASK_TYPES_H

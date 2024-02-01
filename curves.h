@@ -16,40 +16,40 @@ private:
 class Circle : public Shape
 {
 public:
-    Circle(Point p, int rad);
+    Circle(Point p, float rad);
     void print();
-    int getRadius();
+    float getRadius();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:
     Point center;
-    int radius;
+    float radius;
 };
 
 class Ellipse : public Shape
 {
 public:
-    Ellipse(Point p, int rad_x, int rad_y);
+    Ellipse(Point p, float rad_x, float rad_y);
     void print();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:
     Point center;
-    int radius_x;
-    int radius_y;
+    float radius_x;
+    float radius_y;
 };
 
 class Helix : public Shape
 {
 public:
-    Helix(Point p, int rad, int step);
+    Helix(Point p, float rad, float step);
     void print();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:
     Point center;
-    int radius;
-    int step_;
+    float radius;
+    float step_;
 };
 
 #endif //CADEX_TASK_CURVES_H
