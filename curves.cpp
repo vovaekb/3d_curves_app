@@ -12,6 +12,10 @@ Point Shape::getPoint(float t) {}
 Vector Shape::getDerivative(float t) {}
 
 Circle::Circle(Point p, float rad) : center(p), radius(rad) {}
+Circle::Circle(const Circle& other) {
+    center = other.center;
+    radius = other.radius;
+}
 float Circle::getRadius()
 {
     return radius;
@@ -38,6 +42,11 @@ Vector Circle::getDerivative(float t) {
 }
 
 Ellipse::Ellipse(Point p, float rad_x, float rad_y) : center(p), radius_x(rad_x), radius_y(rad_y) {}
+Ellipse::Ellipse(const Ellipse& other) {
+    center = other.center;
+    radius_x = other.radius_x;
+    radius_y = other.radius_y;
+}
 void Ellipse::print()
 {
     cout << "Ellipse" << endl;
@@ -60,6 +69,11 @@ Vector Ellipse::getDerivative(float t) {
 }
 
 Helix::Helix(Point p, float rad, float step) : center(p), radius(rad), step_(step) {}
+Helix::Helix(const Helix& other) {
+    center = other.center;
+    radius = other.radius;
+    step_ = other.step_;
+}
 void Helix::print()
 {
     cout << "Helix" << endl;

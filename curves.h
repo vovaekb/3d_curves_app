@@ -17,6 +17,7 @@ class Circle : public Shape
 {
 public:
     Circle(Point p, float rad);
+    Circle(const Circle& other);
     void print();
     float getRadius();
     Point getPoint(float t) override;
@@ -30,6 +31,7 @@ class Ellipse : public Shape
 {
 public:
     Ellipse(Point p, float rad_x, float rad_y);
+    Ellipse(const Ellipse& other);
     void print();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
@@ -43,6 +45,7 @@ class Helix : public Shape
 {
 public:
     Helix(Point p, float rad, float step);
+    Helix(const Helix& other);
     void print();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
