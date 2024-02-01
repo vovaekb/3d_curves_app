@@ -11,8 +11,10 @@ void Shape::print() {}
 Point Shape::getPoint(float t) {}
 Vector Shape::getDerivative(float t) {}
 
-Circle::Circle(Point p, int rad) : center(p), radius(rad) {
-    cout << "Circle::Circle" << endl;
+Circle::Circle(Point p, int rad) : center(p), radius(rad) {}
+int Circle::getRadius()
+{
+    return radius;
 }
 void Circle::print()
 {

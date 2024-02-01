@@ -18,6 +18,7 @@ class Circle : public Shape
 public:
     Circle(Point p, int rad);
     void print();
+    int getRadius();
     Point getPoint(float t) override;
     Vector getDerivative(float t) override;
 private:

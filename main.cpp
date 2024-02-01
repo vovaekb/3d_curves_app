@@ -62,11 +62,18 @@ void printCurvesCoords(const vector<std::shared_ptr<Shape> > &v) {
 
 void printCurvesDerivatives() {}
 
-int getCurvesRadiiSum() {}
-
 vector<std::shared_ptr<Shape> > createSecondList(vector<std::shared_ptr<Shape> > &v) {
     cout << "createSecondList" << endl;
+//    vector<std::shared_ptr<Circle> > second_list;
     vector<std::shared_ptr<Shape> > second_list;
+//    for (const auto &c: v)
+//    {
+//
+//        if (dynamic_cast<Circle*>(c.get()) != nullptr)
+//        {
+//            second_list.emplace_back(c);
+//        }
+//    }
     std::copy_if(v.begin(),
                  v.end(),
                  std::back_inserter(second_list),
@@ -80,10 +87,38 @@ vector<std::shared_ptr<Shape> > createSecondList(vector<std::shared_ptr<Shape> >
     return second_list;
 }
 
+bool sortByRadius (const std::shared_ptr<Shape> &c1, const std::shared_ptr<Shape> &c2) {
+    return dynamic_cast<Circle*>(c1.get())->getRadius() < dynamic_cast<Circle*>(c2.get())->getRadius();
+}
+
+void sortSecondList(vector<std::shared_ptr<Shape> > &v) {
+    std::sort(v.begin(), v.end(), sortByRadius);
+    cout << "After sorting" << endl;
+    for(const auto &c: v)
+    {
+        c->print();
+        cout << endl;
+    }
+}
+
+int getCurvesRadiiSum(vector<std::shared_ptr<Shape> > &v) {
+    auto result = 0;
+    for(const auto &c: v)
+    {
+        c->print();
+        cout << endl;
+        result += dynamic_cast<Circle*>(c.get())->getRadius();
+    }
+    cout << "Total radii sum: " << result << endl;
+    return result;
+}
+
 int main() {
     auto curves_list = createCurvesList();
 //    printCurvesCoords(curves_list);
     auto circles_list = createSecondList(curves_list);
+    sortSecondList(circles_list);
+    auto radii_sum = getCurvesRadiiSum(circles_list);
 
     return 0;
 }
