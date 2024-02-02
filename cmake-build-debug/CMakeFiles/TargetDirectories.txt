@@ -1,0 +1,4 @@
+C:/Users/vladimir/CLionProjects/3d_curves_app/cmake-build-debug/CMakeFiles/curves.dir
+C:/Users/vladimir/CLionProjects/3d_curves_app/cmake-build-debug/CMakeFiles/CADEX_Task.dir
+C:/Users/vladimir/CLionProjects/3d_curves_app/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/vladimir/CLionProjects/3d_curves_app/cmake-build-debug/CMakeFiles/rebuild_cache.dir
