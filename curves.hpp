@@ -1,7 +1,7 @@
 #ifndef CADEX_TASK_CURVES_H
 #define CADEX_TASK_CURVES_H
 
-#include "types.h"
+#include "types.hpp"
 
 class Shape
 {
