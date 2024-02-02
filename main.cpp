@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <omp.h>
 #include "types.h"
 #include "curves.h"
 
@@ -103,6 +104,7 @@ void sortSecondList(vector<std::shared_ptr<Shape> > &v) {
 
 float getCurvesRadiiSum(vector<std::shared_ptr<Shape> > &v) {
     auto result = 0;
+    #pragma omp parallel for reduction( +: result )
     for(const auto &c: v)
     {
         c->print();
