@@ -4,8 +4,8 @@
 #include <vector>
 #include <memory>
 #include <omp.h>
-#include "types.h"
-#include "curves.h"
+#include "types.hpp"
+#include "curves.hpp"
 
 #define PI 3.14159265
 
