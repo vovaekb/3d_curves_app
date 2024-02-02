@@ -1,6 +1,6 @@
 #include <cmath>
 #include <iostream>
-#include "curves.hpp"
+#include "3d_curves_app/curves.hpp"
 
 const float PI = 3.14159265;
 const int DEFAULT_RADIUS = 5;

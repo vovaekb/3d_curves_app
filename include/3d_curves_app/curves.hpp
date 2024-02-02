@@ -10,7 +10,6 @@ public:
     virtual void print();
     virtual Point getPoint(float t);
     virtual Vector getDerivative(float t);
-private:
 };
 
 class Circle : public Shape

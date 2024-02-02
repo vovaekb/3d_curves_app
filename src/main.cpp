@@ -5,8 +5,8 @@
 #include <vector>
 #include <memory>
 #include <omp.h>
-#include "types.hpp"
-#include "curves.hpp"
+#include "3d_curves_app/types.hpp"
+#include "3d_curves_app/curves.hpp"
 
 const float PI = 3.14159265;
 const int CURVES_NUMBER = 15;
