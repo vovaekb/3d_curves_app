@@ -7,12 +7,14 @@
 #include "types.hpp"
 #include "curves.hpp"
 
-#define PI 3.14159265
+const float PI = 3.14159265;
 
 using namespace std;
 
-vector<std::shared_ptr<Shape> > createCurvesList() {
-    vector<std::shared_ptr<Shape> > result;
+using ShapePtr = std::shared_ptr<Shape>;
+
+vector<ShapePtr> createCurvesList() {
+    vector<ShapePtr> result;
     auto curves_number = 15;
     result.reserve(curves_number);
     for (auto i = 0; i < curves_number; i++)
@@ -23,7 +25,7 @@ vector<std::shared_ptr<Shape> > createCurvesList() {
         auto z = rand() % 10;
         Point p (x, y, z);
 
-        std::shared_ptr<Shape> c;
+        ShapePtr c;
         if (random_number == 0)
         {
             cout << "Create circle" << endl;
@@ -40,16 +42,10 @@ vector<std::shared_ptr<Shape> > createCurvesList() {
         }
         result.emplace_back(c);
     }
-    // Examine curves
-//    for(const auto &c: result)
-//    {
-//        c->print();
-//        cout << endl;
-//    }
     return result;
 }
 
-void printCurvesCoords(const vector<std::shared_ptr<Shape> > &v) {
+void printCurvesCoords(const vector<ShapePtr> &v) {
     auto t = PI / 4;
     for(const auto &c: v)
     {
@@ -61,25 +57,14 @@ void printCurvesCoords(const vector<std::shared_ptr<Shape> > &v) {
     }
 }
 
-void printCurvesDerivatives() {}
-
-vector<std::shared_ptr<Shape> > createSecondList(vector<std::shared_ptr<Shape> > &v) {
-    cout << "createSecondList" << endl;
-//    vector<std::shared_ptr<Circle> > second_list;
-    vector<std::shared_ptr<Shape> > second_list;
-//    for (const auto &c: v)
-//    {
-//
-//        if (dynamic_cast<Circle*>(c.get()) != nullptr)
-//        {
-//            second_list.emplace_back(c);
-//        }
-//    }
+vector<ShapePtr> createSecondList(vector<ShapePtr> &v) {
+    vector<ShapePtr> second_list;
     std::copy_if(v.begin(),
                  v.end(),
                  std::back_inserter(second_list),
-                 [](auto &c) { return (dynamic_cast<Circle*>(c.get()) != nullptr); });
-    cout << second_list.size() << endl;
+                 [](auto &c) {
+                     return (dynamic_cast<Circle*>(c.get()) != nullptr);
+                 });
     for(const auto &c: second_list)
     {
         c->print();
@@ -88,39 +73,38 @@ vector<std::shared_ptr<Shape> > createSecondList(vector<std::shared_ptr<Shape> >
     return second_list;
 }
 
-bool sortByRadius (const std::shared_ptr<Shape> &c1, const std::shared_ptr<Shape> &c2) {
-    return dynamic_cast<Circle*>(c1.get())->getRadius() < dynamic_cast<Circle*>(c2.get())->getRadius();
+bool sortByRadius (const ShapePtr &c1, const ShapePtr &c2) {
+    auto circle_1 = dynamic_cast<Circle*>(c1.get());
+    auto circle_2 = dynamic_cast<Circle*>(c2.get());
+    return (
+        circle_1->getRadius() < circle_2->getRadius()
+    );
 }
 
-void sortSecondList(vector<std::shared_ptr<Shape> > &v) {
-    std::sort(v.begin(), v.end(), sortByRadius);
-    cout << "After sorting" << endl;
-    for(const auto &c: v)
-    {
-        c->print();
-        cout << endl;
-    }
+void sortSecondList(vector<ShapePtr> &v) {
+    std::sort(v.begin(),
+        v.end(),
+        sortByRadius);
 }
 
-float getCurvesRadiiSum(vector<std::shared_ptr<Shape> > &v) {
+float getCurvesRadiiSum(vector<ShapePtr> &v) {
     auto result = 0;
     #pragma omp parallel for reduction( +: result )
     for(const auto &c: v)
     {
-        c->print();
-        cout << endl;
         result += dynamic_cast<Circle*>(c.get())->getRadius();
     }
-    cout << "Total radii sum: " << result << endl;
     return result;
 }
 
 int main() {
     auto curves_list = createCurvesList();
-//    printCurvesCoords(curves_list);
-    auto circles_list = createSecondList(curves_list);
+    printCurvesCoords(curves_list);
+    auto circles_list =
+        createSecondList(curves_list);
     sortSecondList(circles_list);
     auto radii_sum = getCurvesRadiiSum(circles_list);
+    cout << "Total radii sum: " << radii_sum << endl;
 
     return 0;
 }

@@ -1,8 +1,9 @@
 #include <cmath>
 #include <iostream>
-#include "curves.h"
+#include "curves.hpp"
 
-#define PI 3.14159265
+const float PI = 3.14159265;
+const int DEFAULT_RADIUS = 5;
 
 using namespace std;
 
@@ -11,7 +12,8 @@ void Shape::print() {}
 Point Shape::getPoint(float t) {}
 Vector Shape::getDerivative(float t) {}
 
-Circle::Circle(Point p, float rad) : center(p), radius(rad) {}
+Circle::Circle(Point p, float rad) :
+    center(p), radius(rad < 0 ? DEFAULT_RADIUS : rad) {}
 Circle::Circle(const Circle& other) {
     center = other.center;
     radius = other.radius;
@@ -41,7 +43,9 @@ Vector Circle::getDerivative(float t) {
     return p;
 }
 
-Ellipse::Ellipse(Point p, float rad_x, float rad_y) : center(p), radius_x(rad_x), radius_y(rad_y) {}
+Ellipse::Ellipse(Point p, float rad_x, float rad_y) :
+    center(p), radius_x(rad_x < 0 ? DEFAULT_RADIUS : rad_x),
+    radius_y(rad_y < 0 ? DEFAULT_RADIUS : rad_y) {}
 Ellipse::Ellipse(const Ellipse& other) {
     center = other.center;
     radius_x = other.radius_x;
@@ -68,7 +72,9 @@ Vector Ellipse::getDerivative(float t) {
     return p;
 }
 
-Helix::Helix(Point p, float rad, float step) : center(p), radius(rad), step_(step) {}
+Helix::Helix(Point p, float rad, float step) :
+    center(p), radius(rad < 0 ? DEFAULT_RADIUS : rad),
+    step_(step) {}
 Helix::Helix(const Helix& other) {
     center = other.center;
     radius = other.radius;
