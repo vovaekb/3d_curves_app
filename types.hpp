@@ -5,6 +5,10 @@
 
 using namespace std;
 
+/*!
+  \class Point
+  \brief Class representing 3D point in curve
+*/
 class Point
 {
 public:
@@ -20,6 +24,10 @@ private:
     float z_;
 };
 
+/*!
+  \class Vector
+  \brief Class representing 3D vector
+*/
 class Vector
 {
 public:

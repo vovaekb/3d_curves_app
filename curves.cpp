@@ -7,11 +7,21 @@ const int DEFAULT_RADIUS = 5;
 
 using namespace std;
 
+/*!
+  \class Shape
+  \brief Base class for all the curves (circle, ellipse, helix)
+  This class includes general methods for manipulating with curve
+*/
 Shape::Shape() {}
 void Shape::print() {}
 Point Shape::getPoint(float t) {}
 Vector Shape::getDerivative(float t) {}
 
+/*!
+  \class Circle
+  \brief Class for circle curves
+  This class includes methods for manipulating with circle curves
+*/
 Circle::Circle(Point p, float rad) :
     center(p), radius(rad < 0 ? DEFAULT_RADIUS : rad) {}
 Circle::Circle(const Circle& other) {
@@ -43,6 +53,11 @@ Vector Circle::getDerivative(float t) {
     return p;
 }
 
+/*!
+  \class Ellipse
+  \brief Class for ellipse curves
+  This class includes methods for manipulating with ellipse curves
+*/
 Ellipse::Ellipse(Point p, float rad_x, float rad_y) :
     center(p), radius_x(rad_x < 0 ? DEFAULT_RADIUS : rad_x),
     radius_y(rad_y < 0 ? DEFAULT_RADIUS : rad_y) {}
@@ -72,6 +87,11 @@ Vector Ellipse::getDerivative(float t) {
     return p;
 }
 
+/*!
+  \class Helix
+  \brief Class for helix curves
+  This class includes methods for manipulating with helix curves
+*/
 Helix::Helix(Point p, float rad, float step) :
     center(p), radius(rad < 0 ? DEFAULT_RADIUS : rad),
     step_(step) {}

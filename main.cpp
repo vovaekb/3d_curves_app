@@ -15,7 +15,12 @@ using namespace std;
 
 using ShapePtr = std::shared_ptr<Shape>;
 
-
+/**
+ * Create list of curves.
+ *
+ * @return list of curves
+ *
+ */
 vector<ShapePtr> createCurvesList() {
     srand(time(0));
     vector<ShapePtr> result;
@@ -48,6 +53,12 @@ vector<ShapePtr> createCurvesList() {
     return result;
 }
 
+/**
+ * Create list of curves.
+ *
+** @param v the list of curves. Must be either absolute or relative to
+ *
+ */
 void printCurvesCoords(const vector<ShapePtr> &v) {
     auto t = PI / 4;
     for(const auto &c: v)
@@ -60,6 +71,14 @@ void printCurvesCoords(const vector<ShapePtr> &v) {
     }
 }
 
+/**
+ * Create a second container populating with circles from the first container.
+ *
+** @param v the list of curves
+ *
+ * @return list of curves
+ *
+ */
 vector<ShapePtr> createSecondList(vector<ShapePtr> &v) {
     vector<ShapePtr> second_list;
     std::copy_if(v.begin(),
@@ -76,6 +95,15 @@ vector<ShapePtr> createSecondList(vector<ShapePtr> &v) {
     return second_list;
 }
 
+/**
+ * Method for comparing two circle objects based on radius.
+ *
+ * @param c1 the shared_ptr on the first circle object to compare. Passed by const reference
+*
+ * @param c1 the shared_ptr on the first circle object to second. Passed by const reference
+ *
+ * @return the result of comparison
+ */
 bool sortByRadius (const ShapePtr &c1, const ShapePtr &c2) {
     auto circle_1 = dynamic_cast<Circle*>(c1.get());
     auto circle_2 = dynamic_cast<Circle*>(c2.get());
@@ -84,12 +112,26 @@ bool sortByRadius (const ShapePtr &c1, const ShapePtr &c2) {
     );
 }
 
+/**
+ * Sorts second list of curves by radii.
+ *
+ * @param v the list of curves
+ *
+ */
 void sortSecondList(vector<ShapePtr> &v) {
     std::sort(v.begin(),
         v.end(),
         sortByRadius);
 }
 
+/**
+ * Computes the total sum of radii of all curves in the second container
+ *
+** @param v the list of curves
+ *
+ * @return total sum of radii of all curves
+ *
+ */
 float getCurvesRadiiSum(vector<ShapePtr> &v) {
     auto result = 0;
     #pragma omp parallel for reduction( +: result )
