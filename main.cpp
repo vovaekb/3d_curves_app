@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <ctime>
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -8,16 +9,18 @@
 #include "curves.hpp"
 
 const float PI = 3.14159265;
+const int CURVES_NUMBER = 15;
 
 using namespace std;
 
 using ShapePtr = std::shared_ptr<Shape>;
 
+
 vector<ShapePtr> createCurvesList() {
+    srand(time(0));
     vector<ShapePtr> result;
-    auto curves_number = 15;
-    result.reserve(curves_number);
-    for (auto i = 0; i < curves_number; i++)
+    result.reserve(CURVES_NUMBER);
+    for (auto i = 0; i < CURVES_NUMBER; i++)
     {
         int random_number = rand() % 3;
         auto x = rand() % 10;
