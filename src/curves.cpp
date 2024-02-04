@@ -14,8 +14,8 @@ using namespace std;
 */
 Shape::Shape() {}
 void Shape::print() {}
-Point Shape::getPoint(float t) {}
-Vector Shape::getDerivative(float t) {}
+Point Shape::getPoint(float t) const {}
+Vector Shape::getDerivative(float t) const {}
 
 /*!
   \class Circle
@@ -28,7 +28,7 @@ Circle::Circle(const Circle& other) {
     center = other.center;
     radius = other.radius;
 }
-float Circle::getRadius()
+float Circle::getRadius() const
 {
     return radius;
 }
@@ -38,14 +38,14 @@ void Circle::print()
     cout << radius << ", " << endl;
     center.print();
 }
-Point Circle::getPoint(float t) {
+Point Circle::getPoint(float t) const {
     auto x = center.getX() + radius * cos(t);
     auto y = center.getY() + radius * sin(t);
     auto z = 0;
     Point p (x, y, z);
     return p;
 }
-Vector Circle::getDerivative(float t) {
+Vector Circle::getDerivative(float t) const {
     auto x = radius * (-1) * sin(t);
     auto y = radius * cos(t);
     auto z = 0;
@@ -72,14 +72,14 @@ void Ellipse::print()
     cout << radius_x << ", " << radius_y << ", " << endl;
     center.print();
 }
-Point Ellipse::getPoint(float t) {
+Point Ellipse::getPoint(float t) const {
     auto x = center.getX() + radius_x * cos(t);
     auto y = center.getY() + radius_y * sin(t);
     auto z = 0;
     Point p (x, y, z);
     return p;
 }
-Vector Ellipse::getDerivative(float t) {
+Vector Ellipse::getDerivative(float t) const {
     auto x = radius_x * (-1) * sin(t);
     auto y = radius_y * cos(t);
     auto z = 0;
@@ -106,14 +106,14 @@ void Helix::print()
     cout << radius << ", " << step_ << endl;
     center.print();
 }
-Point Helix::getPoint(float t) {
+Point Helix::getPoint(float t) const {
     auto x = center.getX() + radius * cos(t);
     auto y = center.getY() + radius * sin(t);
     decltype(x) z = step_ * t / (2 * PI);
     Point p (x, y, z);
     return p;
 }
-Vector Helix::getDerivative(float t) {
+Vector Helix::getDerivative(float t) const {
     auto x = radius * (-1) * sin(t);
     auto y = radius * cos(t);
     decltype(x) z = step_ / (2 * PI);

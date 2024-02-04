@@ -8,8 +8,8 @@ class Shape
 public:
     Shape();
     virtual void print();
-    virtual Point getPoint(float t);
-    virtual Vector getDerivative(float t);
+    virtual Point getPoint(float t) const;
+    virtual Vector getDerivative(float t) const;
 };
 
 class Circle : public Shape
@@ -18,9 +18,9 @@ public:
     Circle(Point p, float rad);
     Circle(const Circle& other);
     void print();
-    float getRadius();
-    Point getPoint(float t) override;
-    Vector getDerivative(float t) override;
+    float getRadius() const;
+    Point getPoint(float t) const override;
+    Vector getDerivative(float t) const override;
 private:
     Point center;
     float radius;
@@ -32,8 +32,8 @@ public:
     Ellipse(Point p, float rad_x, float rad_y);
     Ellipse(const Ellipse& other);
     void print();
-    Point getPoint(float t) override;
-    Vector getDerivative(float t) override;
+    Point getPoint(float t) const override;
+    Vector getDerivative(float t) const override;
 private:
     Point center;
     float radius_x;
@@ -46,8 +46,8 @@ public:
     Helix(Point p, float rad, float step);
     Helix(const Helix& other);
     void print();
-    Point getPoint(float t) override;
-    Vector getDerivative(float t) override;
+    Point getPoint(float t) const override;
+    Vector getDerivative(float t) const override;
 private:
     Point center;
     float radius;
